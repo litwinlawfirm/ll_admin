@@ -1,0 +1,2 @@
+<% IO.inspect(assigns) %>
+<h2>Welcome <%= @current_user.given_name %>!</h2>

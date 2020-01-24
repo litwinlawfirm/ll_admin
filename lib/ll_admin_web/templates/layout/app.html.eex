@@ -4,20 +4,22 @@
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>LitwinLaw Admin</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sscaffold-css@0.1.0/sscaffold.min.css" integrity="sha256-NxJ/Enl6+QKA3ysgZq44/qc6cWmUXbAB/hl+QFBuMck=" crossorigin="anonymous">
+    <title>LitwinLaw</title>
     <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>"/>
   </head>
-  <body>
-    <header>
-      <h1>
-        <a href="/">Litwin Law Admin</a>
-        <%= if Map.has_key?(assigns, :current_user) do %>
-          <%= link("Sign Out", to: Routes.session_path(@conn, :destroy), method: :delete) %>
-        <% end %>
-      </h1>
-    </header>
-    <main role="main" class="container">
+  <body class="bg-gray-300">
+    <%= if Map.has_key?(assigns, :current_user) do %>
+      <header class="bg-white">
+        <div class="flex justify-between items-center h-12 px-4">
+          <a class="text-xl" href="/">Litwin Law</a>
+          <div>
+            <%= link("Sign Out", to: Routes.session_path(@conn, :destroy), method: :delete, class: "font-thin inline-block align-middle") %>
+            <%= img_tag(assigns.current_user.picture, alt: "User Picture", class: "h-8 inline-block ml-2 clip-circle") %>
+          </div>
+        </div>
+      </header>
+    <% end %>
+    <main role="main">
       <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
       <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
       <%= render @view_module, @view_template, assigns %>

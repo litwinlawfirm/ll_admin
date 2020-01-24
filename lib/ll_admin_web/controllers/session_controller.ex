@@ -23,7 +23,6 @@ defmodule LLAdminWeb.SessionController do
   def destroy(conn, _params) do
     conn
     |> Plug.Conn.clear_session()
-    |> put_flash(:info, "You have been signed out.")
     |> redirect(to: Routes.session_path(conn, :new))
   end
 end

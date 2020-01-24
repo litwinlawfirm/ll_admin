@@ -1,3 +1,12 @@
-/* This file is for your main application css. */
+@tailwind base;
 
-@import "./phoenix.css";
+@tailwind components;
+
+/* custom components here */
+
+@tailwind utilities;
+
+/* custom utilities here */
+.clip-circle {
+  clip-path: circle(50%);
+}

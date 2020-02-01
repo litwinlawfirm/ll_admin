@@ -13,11 +13,9 @@ defmodule LLAdminWeb.SessionController do
     {:ok, token} = ElixirAuthGoogle.get_token(code, conn)
     {:ok, profile} = ElixirAuthGoogle.get_user_profile(token.access_token)
 
-    # Confirm litwinlaw...
-
     conn
     |> Plug.Conn.put_session(:current_user, profile)
-    |> redirect(to: Routes.page_path(conn, :index))
+    |> redirect(to: Routes.app_path(conn, :index))
   end
 
   def destroy(conn, _params) do

@@ -7,9 +7,9 @@
     <title>LitwinLaw</title>
     <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>"/>
   </head>
-  <body class="bg-gray-300">
+  <body class="bg-white">
     <%= if Map.has_key?(assigns, :current_user) do %>
-      <header class="bg-white">
+      <header class="bg-white shadow-md z-10">
         <div class="flex justify-between items-center h-12 px-4">
           <a class="text-xl" href="/">Litwin Law</a>
           <div>
@@ -22,7 +22,7 @@
     <main role="main">
       <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
       <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
-      <%= render @view_module, @view_template, assigns %>
+      <%= Map.get(assigns, :inner_layout) || render @view_module, @view_template, assigns %>
     </main>
     <script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
   </body>

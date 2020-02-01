@@ -1,0 +1,4 @@
+<h2 class="text-center text-6xl mt-4 mb-6">Welcome <%= @current_user.given_name %>!</h2>
+<div class="flex">
+  <%= img_tag(Routes.static_path(@conn, "/images/great-success.png"), class: "m-auto w-100 max-w-xl h-auto") %>
+</div>

@@ -13,17 +13,26 @@ defmodule LLAdminWeb.Router do
     plug LLAdminWeb.Plugs.Authenticate
   end
 
-  scope "/home", LLAdminWeb do
+  scope "/", LLAdminWeb do
     pipe_through :browser
     pipe_through :authenticated
 
-    get "/", PageController, :index
+    get "/", AppController, :index
+
+    scope "/docs" do
+      get "/", PageController, :index
+      get "/:slug", PageController, :show
+    end
+
+    scope "/cms" do
+      get "/", CMSController, :index
+    end
   end
 
-  scope "/", LLAdminWeb do
+  scope "/auth", LLAdminWeb do
     pipe_through :browser
 
-    get "/auth/google/callback", SessionController, :create
+    get "/google/callback", SessionController, :create
     get "/", SessionController, :new
     delete "/", SessionController, :destroy
   end

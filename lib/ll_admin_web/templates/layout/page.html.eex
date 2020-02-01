@@ -1,0 +1,23 @@
+<%= render_layout "app.html", assigns do %>
+  <div class="flex items-stretch min-h-screen">
+    <nav class="flex-none py-4 border-r border-gray-400">
+      <ul>
+        <%= for page <- @pages do %>
+          <li>
+            <%=
+              active_link(@conn,
+                page.title,
+                to: Routes.page_path(@conn, :show, page.slug),
+                active: "bg-gray-200",
+                class: "block py-2 px-6 text-gray-700 cursor-pointer hover:bg-gray-200 hover:underline"
+              )
+            %>
+          </li>
+        <% end %>
+      </ul>
+    </nav>
+    <section class="flex-grow p-8">
+      <%= render @view_module, @view_template, assigns %>
+    </section>
+  </div>
+<% end %>

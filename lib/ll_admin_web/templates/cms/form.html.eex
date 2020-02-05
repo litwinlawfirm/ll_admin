@@ -1,0 +1,31 @@
+<%= form_for @change, @action, fn f -> %>
+  <div class="flex justify-between mb-6">
+    <legend class="block flex-1">
+      <h1 class="h1 leading-tight">
+        <%= text_input(
+          f,
+          :title,
+          class: "magic-input w-full px-1 leading-snug",
+          required: true,
+          disabled: lock(@page)
+        )%>
+      </h1>
+      <%= link(
+        "/docs/" <> @page.slug,
+        to: Routes.page_path(@conn, :show, @page.slug),
+        class: "font-mono tracking-wide text-gray-900 opacity-50 font-light pl-1 cursor-pointer hover:text-blue-700 hover:underline",
+        id: "slug"
+      ) %>
+    </legend>
+    <div class="pl-2">
+      <input class="btn" type="submit" value="Save" disabled />
+    </div>
+  </div>
+  <textarea
+    id="mde-editor"
+    name="page[content]"
+    required
+  >
+    <%= @page.content %>
+  </textarea>
+<% end %>

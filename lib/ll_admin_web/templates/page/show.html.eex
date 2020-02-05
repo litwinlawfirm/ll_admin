@@ -1,1 +1,6 @@
+<%= link(
+  "edit",
+  to: Routes.cms_path(@conn, :edit, @page.slug),
+  class: "link float-right font-thin"
+) %>
 <%= raw(Earmark.as_html!(@page.content)) %>

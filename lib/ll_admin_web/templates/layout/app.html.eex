@@ -11,10 +11,39 @@
     <%= if Map.has_key?(assigns, :current_user) do %>
       <header class="bg-white shadow-md z-10">
         <div class="flex justify-between items-center h-12 px-4">
-          <a class="text-xl" href="/">Litwin Law</a>
           <div>
-            <%= link("Sign Out", to: Routes.session_path(@conn, :destroy), method: :delete, class: "font-thin inline-block align-middle") %>
-            <%= img_tag(assigns.current_user.picture, alt: "User Picture", class: "h-8 inline-block ml-2 clip-circle") %>
+            <%= link(
+              "Litwin Law",
+              to: Routes.app_path(@conn, :index),
+              class: "text-xl font-semibold text-black tracking-wide mr-4 hover:no-underline"
+            ) %>
+            <%= active_link(
+              @conn,
+              "Docs",
+              to: Routes.page_path(@conn, :index),
+              active: "font-semibold",
+              class: "text-xl font-hairline px-2 text-gray-700 opacity-75 hover:underline"
+            ) %>
+            <%= active_link(
+              @conn,
+              "CMS",
+              to: Routes.cms_path(@conn, :index),
+              active: "font-semibold",
+              class: "text-xl font-hairline px-2 text-gray-700 opacity-75 hover:underline"
+            ) %>
+          </div>
+          <div>
+            <%= link(
+              "Sign Out",
+              to: Routes.session_path(@conn, :delete),
+              method: :delete,
+              class: "font-thin text-gray-700 inline-block align-middle"
+            ) %>
+            <%= img_tag(
+              assigns.current_user.picture,
+              alt: "User Picture",
+              class: "h-8 inline-block ml-2 clip-circle"
+            ) %>
           </div>
         </div>
       </header>

@@ -1,33 +1,19 @@
 defmodule LLAdminWeb.PageController do
   use LLAdminWeb, :controller
-  import Ecto.Query
-  alias LLAdmin.{Repo, Page}
+
+  action_fallback LLAdminWeb.FallbackController
 
   plug :put_layout, :page
 
+  @home_slug "home"
+
   def index(conn, _params) do
-    pages = get_pages()
-    render(conn, "index.html", pages: pages)
+    redirect(conn, to: Routes.page_path(conn, :show, @home_slug))
   end
 
   def show(conn, %{"slug" => slug}) do
-    pages = get_pages()
-
-    case Repo.get_by(Page, slug: slug) do
-      nil ->
-        conn
-        |> put_status(:not_found)
-        |> put_view(LLAdminWeb.ErrorView)
-        |> render(:"404")
-
-      page ->
-        render(conn, "show.html", pages: pages, page: page)
+    with {:ok, page} <- LLAdmin.get_page_by_slug(slug) do
+      render(conn, "show.html", pages: LLAdmin.get_pages(), page: page)
     end
-  end
-
-  defp get_pages() do
-    Page
-    |> select([:id, :title, :slug])
-    |> Repo.all()
   end
 end

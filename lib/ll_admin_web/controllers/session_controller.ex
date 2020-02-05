@@ -18,7 +18,7 @@ defmodule LLAdminWeb.SessionController do
     |> redirect(to: Routes.app_path(conn, :index))
   end
 
-  def destroy(conn, _params) do
+  def delete(conn, _params) do
     conn
     |> Plug.Conn.clear_session()
     |> redirect(to: Routes.session_path(conn, :new))

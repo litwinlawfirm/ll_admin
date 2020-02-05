@@ -1,8 +1,74 @@
 @tailwind base;
 
+.h1 {
+  @apply text-3xl;
+}
+.h2 {
+  @apply text-2xl;
+}
+.h3 {
+  @apply text-xl;
+}
+
+.link {
+  @apply text-blue-700;
+}
+
+.link:hover {
+  @apply underline;
+}
+
+.code {
+  @apply bg-gray-200;
+}
+
 @tailwind components;
 
-/* custom components here */
+.btn {
+  @apply bg-blue-800 text-white font-semibold py-2 px-4 border border-gray-400 rounded shadow cursor-pointer;
+}
+
+.btn:disabled {
+  @apply opacity-25 cursor-default;
+}
+
+.btn:hover:not(:disabled) {
+  @apply bg-blue-700;
+}
+
+.btn:active {
+  @apply shadow-none;
+}
+
+.btn.outline {
+  @apply text-blue-800 bg-transparent
+}
+
+.btn.outline:hover {
+  @apply bg-gray-200 ;
+}
+
+.magic-input {
+  @apply border border-transparent rounded
+}
+
+.magic-input:hover,
+.magic-input:focus {
+  @apply border-gray-400
+}
+
+thead tr {
+  @apply border-b border-black;
+}
+
+tbody tr {
+  @apply border-b border-gray-400;
+}
+
+th,td {
+  @apply text-left px-4 py-2;
+}
+
 
 @tailwind utilities;
 
@@ -10,3 +76,5 @@
 .clip-circle {
   clip-path: circle(50%);
 }
+
+@import "github-markdown.css";

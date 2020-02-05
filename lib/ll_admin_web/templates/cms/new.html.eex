@@ -1,0 +1,7 @@
+<% page = @change.data %>
+<%= render(
+  "form.html",
+  assigns
+  |> Map.put(:page, page)
+  |> Map.put(:action, Routes.cms_path(@conn, :create))
+) %>

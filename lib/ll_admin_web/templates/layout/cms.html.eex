@@ -1,0 +1,5 @@
+<%= render_layout "app.html", assigns do %>
+  <section class="flex-grow p-8">
+    <%= render @view_module, @view_template, assigns %>
+  </section>
+<% end %>

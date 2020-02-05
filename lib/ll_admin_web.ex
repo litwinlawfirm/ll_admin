@@ -42,6 +42,7 @@ defmodule LLAdminWeb do
       import LLAdminWeb.ErrorHelpers
       import LLAdminWeb.Gettext
       alias LLAdminWeb.Router.Helpers, as: Routes
+      import LLAdminWeb.ViewHelpers
     end
   end
 

@@ -24,9 +24,7 @@ defmodule LLAdminWeb.Router do
       get "/:slug", PageController, :show
     end
 
-    scope "/cms" do
-      get "/", CMSController, :index
-    end
+    resources "/cms", CMSController, except: [:show], param: "slug"
   end
 
   scope "/auth", LLAdminWeb do
@@ -34,6 +32,6 @@ defmodule LLAdminWeb.Router do
 
     get "/google/callback", SessionController, :create
     get "/", SessionController, :new
-    delete "/", SessionController, :destroy
+    delete "/", SessionController, :delete
   end
 end

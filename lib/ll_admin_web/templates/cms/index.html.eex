@@ -1,26 +1,41 @@
-<script src="https://unpkg.com/stackedit-js@1.0.7/docs/lib/stackedit.min.js"></script>
-<style>
-.stackedit-container {
-  top: 50px;
-  left: 200px;
-}
-</style>
-<script>
-  const el = document.querySelector('textarea');
-  let html;
-  const stackedit = new Stackedit();
-
-  // Open the iframe
-  stackedit.openFile({
-    name: 'Filename', // with an optional filename
-    content: {
-      text: 'Hello World' // and the Markdown content.
-    }
-  });
-
-  // Listen to StackEdit events and apply the changes to the textarea.
-  stackedit.on('fileChange', (file) => {
-    console.log('FILE CHANGE')
-    html = file.content.text;
-  });
-</script>
+<div class="container mx-auto max-w-4xl">
+  <div class="flex justify-between items-center">
+    <h1 class="text-4xl mb-8">Pages</h1>
+    <%= link(
+      "New",
+      to: Routes.cms_path(@conn, :new),
+      class: "btn"
+    )%>
+  </div>
+  <table class="mx-auto w-full max-w-4xl">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Slug</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= for page <- @pages do %>
+        <tr>
+          <td><%= page.title %></td>
+          <td class="font-mono tracking-wide text-gray-900 opacity-50 font-light"><%= page.slug %></td>
+          <td class="text-right">
+            <%= link(
+              "Edit",
+              to: Routes.cms_path(@conn, :edit, page.slug),
+              class: "link px-2"
+            ) %>
+            <%= link(
+              "Delete",
+              to: Routes.cms_path(@conn, :delete, page.slug),
+              method: :delete,
+              class: "link px-2 text-red-700" <> lock_class(page, " opacity-0 pointer-events-none"),
+              data: [confirm: "Are you sure?"]
+            ) %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

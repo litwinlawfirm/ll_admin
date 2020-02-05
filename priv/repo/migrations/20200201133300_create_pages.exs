@@ -5,7 +5,7 @@ defmodule LLAdmin.Repo.Migrations.CreatePages do
     create table(:pages) do
       add :title, :string, null: false
       add :slug, :string, null: false
-      add :content, :string, default: "", null: false
+      add :content, :text, default: "", null: false
 
       timestamps()
     end
